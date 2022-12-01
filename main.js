@@ -1,4 +1,5 @@
 const __ = (path, lang) => {
+    const TRANSLATION_NOT_FOUND = {ar:"الترجمة غير متاحة", en:"Translation is not available"}[lang]
     const translations = {
         alerts: {
             win: {
@@ -34,10 +35,10 @@ const __ = (path, lang) => {
     let currentTranslation = translations
     for(let i = 0; i < pathAsArray.length; i++){
         if(currentTranslation[pathAsArray[i]]) currentTranslation = currentTranslation[pathAsArray[i]]
-        else return {ar:"الترجمة غير متاحة", en:"Translation is not available"}[lang]
+        else return TRANSLATION_NOT_FOUND
     }
 
-    return currentTranslation[lang]
+    return currentTranslation[lang] === undefined ? TRANSLATION_NOT_FOUND : currentTranslation[lang]
 }
 
 console.log(__('alerts.win', 'ar'))
@@ -54,3 +55,7 @@ console.log(__('auth.register.title', 'en'))
 // that's how to handle errors
 console.log(__('alerts.register.title', 'ar'))
 console.log(__('alerts.register.title', 'en'))
+console.log(__('auth.register', 'ar'))
+console.log(__('auth.register', 'en'))
+console.log(__('auth.register.title.span', 'ar'))
+console.log(__('auth.register.title.span', 'en'))
